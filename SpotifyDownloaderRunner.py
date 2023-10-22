@@ -1,24 +1,21 @@
 import spotify_fetch
 import yt_api
 import csv
+import os
 
 playlist = input("Enter a playlist link:\n")
 print("")
 
-#phase this out to just use a temp file
-filename = input("Enter a file name for the csv output (no extension):\n")
-
-#outfolder = input("Enter the name of the destination folder (within Downloaded Files):\n")
-
-spotify_fetch.getCSV(playlist, filename)
-
-#write something that reads info from the CSV here
-
+#get playlist as csv and store in cwd/temp
+spotify_fetch.getCSV(playlist, "temp")
 read_content=list()
-path = 'C:\\Users\\DanBo\\Documents\\Projects\\Spotify Downloader\\csv\\' + filename + ".csv"
+path = os.getcwd()
+
+#read csv and download using yt_api
 total = 0
 processed = 0
-with open(path, 'r') as playlist_csv:
+r = 1
+with open(path + "\\temp.csv", 'r') as playlist_csv:
     read_content = csv.reader(playlist_csv, delimiter=',', quotechar='|')
     #loop that calls SpotifyDownloader.findStream() and SpotifyDownloader.downloadVideo() for each track
     for row in read_content:
@@ -30,10 +27,16 @@ with open(path, 'r') as playlist_csv:
             video_link = yt_api.findStream(title, artist, length)
             if title.isascii() and artist.isascii():
                 try:
-                    yt_api.downloadVideo(link=video_link, folderName=filename, trackTitle=title)
+                    yt_api.downloadVideo(link=video_link, trackTitle=title, num=r)
                     processed += 1
+                    r += 1
                 except:
                     print(title + " could not be downloaded")
             else:
                 print(title + " contains non-ascii characters!")
 print(processed, "of", total, "downloads complete!")
+
+#remove the csv file
+csv = path + "\\temp.csv"
+os.remove(csv)
+print("Cleanup complete.")

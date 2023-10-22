@@ -7,12 +7,11 @@ import spotipy
 import re
 import csv
 import dataclean
+from pathlib import Path
 
 #load credentials from system env var
 client_id = os.environ.get('SPOTIFY_CLIENT_ID')
 client_secret = os.environ.get('SPOTIFY_CLIENT_SECRET')
-#print(client_id)
-#print(client_secret)
 
 def get_token():
     '''automatically asks for spotify token to authenticate'''
@@ -60,7 +59,13 @@ def getCSV(playlist_link, outfile_name):
     print("fetched tracks!")
 
     # create csv file
-    with open("csv/" + OUTPUT_FILE_NAME, "w", encoding="utf-8") as file:
+    csvname = os.getcwd() + "\\temp.csv"
+    csvpath = Path(csvname)
+    if csvpath.is_file():
+        os.remove(csvname)
+    creation = open(OUTPUT_FILE_NAME, "x")
+    creation.close()
+    with open(OUTPUT_FILE_NAME, "w", encoding="utf-8") as file:
         writer = csv.writer(file)
 
         # extract name and artist
