@@ -10,3 +10,8 @@ Before you can use this, make sure you set up a Spotify client ID and client Sec
 - urlib
 
 Run SpotifyDownloaderRunner.py and insert your playlist link when prompted.
+
+
+#Features Coming Soon:
+- upgraded non-ascii character handling
+- summary of failed downloads
