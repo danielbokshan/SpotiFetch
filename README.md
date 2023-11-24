@@ -4,6 +4,12 @@ This is an interactive Python Script that downloads a Spotify playlist as mp3s f
 
 Before you can use this, make sure you set up a Spotify client ID and client Secret via the Spotify Developer portal. Set the client id and secret as environmental variables in Windows. The program will read these automatically.
 
+Make sure you set them as..
+
+SPOTIFY_CLIENT_ID
+and
+SPOTIFY_CLIENT_SECRET
+
 Also make sure to create a folder titled "Downloads" in the working directory.
 
 ### Dependencies:
