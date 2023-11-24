@@ -13,10 +13,10 @@ SPOTIFY_CLIENT_SECRET
 Also make sure to create a folder titled "Downloads" in the working directory.
 
 ### Dependencies:
-- yt_api
 - spotipy
 - pytube
 - urlib
+- requests
 
 Run SpotifyDownloaderRunner.py and insert your playlist link when prompted.
 
