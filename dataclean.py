@@ -22,9 +22,5 @@ def scrub_string(phrase):
     out = out.replace("ë", "e")
     out = out.replace("&", "n")
     out = out.replace("‘", "")
-    out = out.replace("’", "")
     out = phrase
-    for char in out:
-        if not char.isalpha() or not char.isascii():
-            phrase.replace(char, "")
     return out
