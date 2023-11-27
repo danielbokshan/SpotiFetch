@@ -17,7 +17,3 @@ SPOTIFY_CLIENT_SECRET
 - requests
 
 Run SpotifyDownloaderRunner.py and insert your playlist link when prompted.
-
-# Features Coming Soon:
-- upgraded non-ascii character handling
-- summary of failed downloads
