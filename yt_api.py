@@ -33,8 +33,6 @@ def downloadVideo(link, trackTitle, num):
 def findStream(trackTitle, artist, length_ms):
     '''locates a lyric video stream on youtube using parameter trackTitle and returns its link'''
 
-    print("attempting to download " + trackTitle + " - " + artist)
-
     #convert length_ms to seconds and add buffer times
     spotify_length_sec = int(length_ms) // 1000
     spotify_length_plus = spotify_length_sec +3

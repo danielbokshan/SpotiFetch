@@ -10,8 +10,6 @@ SPOTIFY_CLIENT_ID
 and
 SPOTIFY_CLIENT_SECRET
 
-Also make sure to create a folder titled "Downloads" in the working directory.
-
 ### Dependencies:
 - spotipy
 - pytube

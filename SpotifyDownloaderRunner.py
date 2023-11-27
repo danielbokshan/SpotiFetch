@@ -2,6 +2,7 @@ import spotify_fetch
 import yt_api
 import csv
 import os
+import dataclean
 
 playlist = input("Enter a playlist link:\n")
 print("")
@@ -24,16 +25,19 @@ with open(path + "\\temp.csv", 'r') as playlist_csv:
             title = row[0]
             artist = row[1]
             length = row[2]
-            video_link = yt_api.findStream(title, artist, length)
-            if title.isascii() and artist.isascii():
+            print("attempting to download " + title + " - " + artist)
+            title = dataclean.scrub_string(title)
+            artist = dataclean.scrub_string(artist)
+            if title.isascii() == True and artist.isascii() == True:
                 try:
+                    video_link = yt_api.findStream(title, artist, length)
                     yt_api.downloadVideo(link=video_link, trackTitle=title, num=r)
                     processed += 1
                     r += 1
                 except:
                     print(title + " could not be downloaded")
             else:
-                print(title + " contains non-ascii characters!")
+                print(title + " contains non-ascii characters! Could not be downloaded.\n")
 print(processed, "of", total, "downloads complete!")
 
 #remove the csv file
