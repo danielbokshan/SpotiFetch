@@ -15,6 +15,7 @@ path = os.getcwd()
 #read csv and download using yt_api
 total = 0
 processed = 0
+failed_downloads = list()
 r = 1
 with open(path + "\\temp.csv", 'r') as playlist_csv:
     read_content = csv.reader(playlist_csv, delimiter=',', quotechar='|')
@@ -36,11 +37,19 @@ with open(path + "\\temp.csv", 'r') as playlist_csv:
                     r += 1
                 except:
                     print(title + " could not be downloaded")
+                    this_track = title + " - " + artist
+                    failed_downloads.append(this_track)
             else:
                 print(title + " contains non-ascii characters! Could not be downloaded.\n")
-print(processed, "of", total, "downloads complete!")
+                this_track = title + " - " + artist
+                failed_downloads.append(this_track)
+
+print(processed, "of", total, "downloads complete!\n")
+print("Failed Download Summary: ")
+for item in failed_downloads:
+    print(item)
 
 #remove the csv file
 csv = path + "\\temp.csv"
 os.remove(csv)
-print("Cleanup complete.")
+print("\nCleanup complete.")
