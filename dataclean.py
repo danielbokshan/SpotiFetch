@@ -22,5 +22,6 @@ def scrub_string(phrase):
     out = out.replace("ë", "e")
     out = out.replace("&", "n")
     out = out.replace("‘", "")
+    out = out.replace("é", "e")
     out = phrase
     return out
